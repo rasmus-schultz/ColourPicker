@@ -141,6 +141,14 @@ window.addEventListener("mousemove", (E) => {
 window.addEventListener("mouseup", () => {
   isDragging = false;
 });
+
+RgbOutput.addEventListener("click", () => {
+  navigator.clipboard.writeText(RgbOutput.textContent);
+});
+
+HexOutput.addEventListener("click", () => {
+  navigator.clipboard.writeText(HexOutput.textContent);
+});
 // ] EVENTS
 
 // Initial draw
