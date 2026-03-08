@@ -4,10 +4,10 @@ const Canvas = document.getElementById("canvas");
 const DrawContext = Canvas.getContext("2d");
 const Width = Canvas.width;
 const Height = Canvas.height;
-
 const BrightnessSlider = document.getElementById("slider");
 const Preview = document.getElementById("preview");
-const ColorOutput = document.getElementById("color_output");
+const HexOutput = document.getElementById("hex");
+const RgbOutput = document.getElementById("rgb");
 const Divided255 = 1 / 255;
 
 let CurrentBrightness = BrightnessSlider.value / 255;
@@ -19,7 +19,7 @@ const BrightnessOutput = document.getElementById("brightness_output");
 //
 
 // POSITION TO RGB CONVERTER [
-function getRGB(Pos) {
+function getRgb(Pos) {
   const HueOffset = Pos % 256;
   const Segment = Math.floor(Pos / 256);
 
@@ -45,7 +45,7 @@ function getRGB(Pos) {
 // Generate hue spectrum.
 const HueSpectrum = new Array(Width);
 for (let X = 0; X < Width; X++) {
-  HueSpectrum[X] = getRGB(X);
+  HueSpectrum[X] = getRgb(X);
 }
 
 // SATURATION & BRIGHTNESS [
@@ -75,7 +75,8 @@ function updateColor(X, Y) {
     B.toString(16).padStart(2, "0");
 
   // Update HTML.
-  ColorOutput.textContent = `RGB(${R}, ${G}, ${B}) | ${Hex}`;
+  RgbOutput.textContent = `${R}, ${G}, ${B}`;
+  HexOutput.textContent = `${Hex}`;
   Preview.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
 }
 // ] COLOR UPDATER
